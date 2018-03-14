@@ -1,0 +1,65 @@
+#!/bin/bash
+
+
+# aterm.jar
+export MFLUX_ATERM=/opt/mediaflux/bin/aterm.jar
+
+# mflux.cfg
+export MFLUX_CFG=$HOME/.Arcitecta/mflux.cfg
+
+# check if java exists
+if [[ -z $(which java) ]]; then
+    echo "Error: cannot find java." 1>&2
+    exit 1
+fi
+
+# check if aterm.jar exists
+if [[ -z $MFLUX_ATERM ]]; then
+    MFLUX_ATERM=$(dirname $0)/aterm.jar
+fi
+
+if [[ ! -f $MFLUX_ATERM ]]; then
+    echo "Error: cannot find $MFLUX_ATERM." 1>&2
+    exit 2
+fi
+
+# check if mflux.cfg exists
+if [[ -z $MFLUX_CFG ]]; then
+    MFLUX_CFG=$HOME/.Arcitecta/mflux.cfg
+fi
+
+if [[ ! -f $MFLUX_CFG ]]; then
+    echo "Error: cannot find $MFLUX_CFG." 1>&2
+    exit 3
+fi
+
+# show usage if no arguments specified
+if [[ $# -eq 0 ]]; then
+    echo "Error: missing arguments." 1>&2
+    java -jar -Dmf.cfg=$MFLUX_CFG $MFLUX_ATERM nogui help import
+    exit 4
+fi
+
+# parse arguments
+ARGS=()
+ARGS+=("nogui")
+ARGS+=("import")
+while [[ $# -gt 0 ]]
+do
+case $1 in
+    -h|--help)
+    java -jar -Dmf.cfg=$MFLUX_CFG $MFLUX_ATERM nogui help import
+    exit 0
+    ;;
+    *)    
+    ARGS+=("$1")
+    shift
+    ;;
+esac
+done
+
+# restore arguments
+set -- "${ARGS[@]}"
+
+# execute import command via aterm
+java -jar -Dmf.cfg=$MFLUX_CFG $MFLUX_ATERM ${1+"$@"}
