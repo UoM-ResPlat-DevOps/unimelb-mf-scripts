@@ -86,14 +86,14 @@ aterm-import:
 
 ### 3.1. Upload a local directory to Mediaflux:
 * On Mac OS, Linux or Unix:
-  * **./aterm-download -namespace /projects/my-project /Users/wilson/Downloads**
+  * **./aterm-import -namespace /projects/my-project /Users/wilson/dir-to-upload**
 * On Windows:
-  * **aterm.cmd download -namespace /projects/my-project c:\users\wilson\Downloads**
+  * **aterm-import.cmd -namespace /projects/my-project c:\users\wilson\dir-to-upload**
 
 ### 3.2. Upload data with multiple threads. 
 * The commands below use 4 threads to download data. The number of threads should normally be less than the number of your CPU cores.
   * On Mac OS, Linux or Unix:
-    * **./aterm-download -ncsr 4 -namespace /projects/my-project /Users/wilson/Downloads**
+    * **./aterm-import -ncsr 4 -namespace /projects/my-project /Users/wilson/dir-to-upload**
   * On Windows:
-    * **aterm-download.cmd -ncsr 4 -namespace /projects/my-project c:\users\wilson\Downloads**
+    * **aterm-import.cmd -ncsr 4 -namespace /projects/my-project c:\users\wilson\dir-to-upload**
 
