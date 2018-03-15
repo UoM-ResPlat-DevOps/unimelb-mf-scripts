@@ -19,7 +19,7 @@ It requires **aterm.jar**, which can be downloaded by the script automatically. 
   2. use the file in **$HOME/.Arcitecta/mflux.cfg** (or **%USERPROFILE%/Arcitecta/mflux.cfg**) if the file exists
   3. use the file **mflux.cfg** in the script directory if exists.
 
-## II. Usage/Synopsis
+## II. Synopsis & Usage
 ```
 aterm-download: 
 	synopsis:
@@ -66,11 +66,18 @@ aterm-download:
 			[optional] When folder layout is set to 'collection' this argument specifies the number of collection parents to include. Defaults to infinity, i.e. all parents.
 ```
 
-## II. Examples
+## III. Examples
 
-### 1. Execute download command:
+### 1. Download data from a remote Mediaflux namespace(directory) to the a directory in local files system:
 * On Mac OS, Linux or Unix:
-  * **./aterm download -namespace /projects/my-project /Users/wilson/Downloads**
+  * **./aterm-download -namespace /projects/my-project /Users/wilson/Downloads**
 * On Windows:
   * **aterm.cmd download -namespace /projects/my-project c:\users\wilson\Downloads**
+
+### 2. Download data concurrently with multiple threads. 
+* The commands below use 4 threads to download data. The number of threads should normally be less than the number of your CPU cores.
+  * On Mac OS, Linux or Unix:
+    * **./aterm-download -ncsr 4 -namespace /projects/my-project /Users/wilson/Downloads**
+  * On Windows:
+    * **aterm-download.cmd -ncsr 4 -namespace /projects/my-project c:\users\wilson\Downloads**
 
