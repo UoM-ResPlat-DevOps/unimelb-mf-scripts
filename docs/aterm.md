@@ -41,6 +41,6 @@ It requires file: **aterm.jar**, which can be downloaded by this script automati
 ## 3. Other scripts
 
 * **NOTE:** 
-  * **aterm-download** is equivalent to **aterm download** using **aterm** script.
-  * **aterm-import** is equivalent to **aterm import** using **aterm** script.
+  * **aterm-download** is equivalent to `aterm download` using **aterm** script.
+  * **aterm-import** is equivalent to `aterm import` using **aterm** script.
 
