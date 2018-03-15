@@ -14,6 +14,7 @@ It requires file: **aterm.jar**, which can be downloaded by this script automati
     * **SET MFLUX_ATERM=x:\path\to\aterm.jar**
 
 ### mflux.cfg
+* You **must** specify the Mediaflux server details and user credentails (or secure identity token) in the **mflux.cfg**
 * the script will try the following locations to find **mflux.cfg**:
   1. use the file specified by **$MFLUX_CFG** (or **%MFLUX_CFG%** on Windows) if the file exists;
   2. use the file in **$HOME/.Arcitecta/mflux.cfg** (or **%USERPROFILE%/Arcitecta/mflux.cfg**) if the file exists
