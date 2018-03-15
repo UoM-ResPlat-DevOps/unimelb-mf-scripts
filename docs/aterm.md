@@ -3,8 +3,8 @@
 aterm (or aterm.cmd for Windows) script provides a command line Mediaflux terminal. It requires aterm.jar, which can be downloaded by the script. Also it requires the configruation file: mflux.cfg, which specifies the Mediaflux server details and user credentials.
 
 * aterm.jar
-  * aterm.jar will be downloaded automatically to script directory by the script.
-  * Or you can modify the script to specify the location of aterm.jar
+  * The script downloads aterm.jar automatically to script directory.
+  * You can modify the script to specify the different location:
     * on Linux/Mac OS/Unix, modify aterm file:
       * export MFLUX_ATERM=/path/to/aterm.jar
     * on Windows, modify aterm.cmd file:
@@ -12,4 +12,6 @@ aterm (or aterm.cmd for Windows) script provides a command line Mediaflux termin
 
 * configuration file: mflux.cfg
   * the script will try the following locations to find mflux.cfg:
-    1.
+    1. use the file specified by $MFLUX_CFG (or %MFLUX_CFG% on Windows) if the file exists;
+    2. use the file in $HOME/.Arcitecta/mflux.cfg (or %USERPROFILE%/Arcitecta/mflux.cfg) if the file exists
+    3. use the file in the script directory.
