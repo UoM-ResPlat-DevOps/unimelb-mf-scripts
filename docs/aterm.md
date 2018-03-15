@@ -1,2 +1,3 @@
-# aterm - Mediaflux terminal command line interface
+# aterm
+## - Mediaflux terminal command line interface
 
