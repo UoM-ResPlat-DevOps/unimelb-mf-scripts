@@ -1,11 +1,13 @@
 #!/bin/bash
 
-
-# aterm.jar
+# aterm.jar location
 export MFLUX_ATERM=/opt/mediaflux/bin/aterm.jar
 
-# mflux.cfg
+# mflux.cfg location
 export MFLUX_CFG=$HOME/.Arcitecta/mflux.cfg
+
+# aterm.jar download link. In case of $MFLUX_ATERM does not exist. This script tries downloading aterm.jar from the link below to the same directory:
+ATERM_DOWNLOAD_LINK=https://mediaflux.vicnode.org.au/mflux/aterm.jar
 
 # check if java exists
 if [[ -z $(which java) ]]; then
@@ -13,25 +15,44 @@ if [[ -z $(which java) ]]; then
     exit 1
 fi
 
-# check if aterm.jar exists
-if [[ -z $MFLUX_ATERM ]]; then
-    MFLUX_ATERM=$(dirname $0)/aterm.jar
-fi
 
-if [[ ! -f $MFLUX_ATERM ]]; then
-    echo "Error: cannot find $MFLUX_ATERM." 1>&2
-    exit 2
+SCRIPT_DIR=$(dirname $0)
+
+# check if aterm.jar exists
+if [[ -z $MFLUX_ATERM || ! -f $MFLUX_ATERM ]]; then
+    if [[ -f ${SCRIPT_DIR}/aterm.jar ]]; then
+        MFLUX_ATERM=${SCRIPT_DIR}/aterm.jar
+    else
+        if [[ ! -z $(which curl) ]]; then
+            curl -o ${SCRIPT_DIR}/aterm.jar ${ATERM_DOWNLOAD_LINK} || exit 21
+            MFLUX_ATERM=${SCRIPT_DIR}/aterm.jar
+        else
+            if [[ ! -z $(which wget) ]]; then
+                wget -O ${SCRIPT_DIR}/aterm.jar ${ATERM_DOWNLOAD_LINK} || exit 22
+                MFLUX_ATERM=${SCRIPT_DIR}/aterm.jar
+            else
+               echo "Error: cannot find aterm.jar." 1>&2
+               exit 2
+            fi
+        fi
+    fi
 fi
 
 # check if mflux.cfg exists
-if [[ -z $MFLUX_CFG ]]; then
-    MFLUX_CFG=$HOME/.Arcitecta/mflux.cfg
+if [[ -z $MFLUX_CFG || ! -f $MFLUX_CFG ]]; then
+    if [[ -f $HOME/.Arcitecta/mflux.cfg ]]; then
+        MFLUX_CFG=$HOME/.Arcitecta/mflux.cfg
+    else
+        if [[ -f ${SCRIPT_DIR}/mflux.cfg ]]; then
+            MFLUX_CFG=${SCRIPT_DIR}/mflux.cfg
+        else
+            echo "Error: cannot find mflux.cfg." 1>&2
+            exit 3
+        fi
+    fi
 fi
 
-if [[ ! -f $MFLUX_CFG ]]; then
-    echo "Error: cannot find $MFLUX_CFG." 1>&2
-    exit 3
-fi
 
 # execute command via aterm
-java -jar -Dmf.cfg=$MFLUX_CFG $MFLUX_ATERM ${1+"$@"}
+java -jar -Dmf.cfg=$MFLUX_CFG $MFLUX_ATERM nogui ${1+"$@"}
+
