@@ -72,7 +72,7 @@ aterm-download:
 * On Mac OS, Linux or Unix:
   * **./aterm-download -namespace /projects/my-project /Users/wilson/Downloads**
 * On Windows:
-  * **aterm.cmd download -namespace /projects/my-project c:\users\wilson\Downloads**
+  * **aterm-download.cmd download -namespace /projects/my-project c:\users\wilson\Downloads**
 
 ### 3.2. Download data concurrently with multiple threads. 
 * The commands below use 4 threads to download data. The number of threads should normally be less than the number of your CPU cores.
