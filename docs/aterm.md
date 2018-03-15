@@ -38,3 +38,9 @@ It requires file: **aterm.jar**, which can be downloaded by this script automati
 * On Windows:
   * **aterm.cmd download -namespace /projects/my-project c:\users\wilson\Downloads**
 
+## 3. Other scripts
+
+* **NOTE:** 
+  * **aterm-download** is equivalent to **aterm download** using **aterm** script.
+  * **aterm-import** is equivalent to **aterm import** using **aterm** script.
+
