@@ -7,7 +7,7 @@ A set of wrapper Unix bash scripts and Windows batch scripts for Mediaflux aterm
   * [User guide for aterm](https://github.com/UoM-ResPlat-DevOps/unimelb-mf-scripts/blob/master/docs/aterm.md)
 
 ## 2. aterm-download
-**aterm-download** (or **aterm-download.cmd** on Windows) script provides a command line tool to download data from Mediaflux server. **aterm-download** is equivalent to **aterm download** using **aterm** script.
+**aterm-download** (or **aterm-download.cmd** on Windows) script provides a command line tool to download data from Mediaflux server. 
 
   * [User guide for aterm-download](https://github.com/UoM-ResPlat-DevOps/unimelb-mf-scripts/blob/master/docs/aterm-download.md)
 
