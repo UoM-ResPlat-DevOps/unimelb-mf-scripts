@@ -38,6 +38,11 @@ It requires file: **aterm.jar**, which can be downloaded by this script automati
   * **./aterm download -namespace /projects/my-project /Users/wilson/Downloads**
 * On Windows:
   * **aterm.cmd download -namespace /projects/my-project c:\users\wilson\Downloads**
+### 2.4. Execute import command:
+* On Mac OS, Linux or Unix:
+  * **./aterm import -namespace /projects/my-project /Users/wilson/dir-to-upload**
+* On Windows:
+  * **aterm.cmd import -namespace /projects/my-project c:\users\wilson\dir-to-upload**
 
 ## 3. Other scripts
 
