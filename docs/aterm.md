@@ -20,12 +20,12 @@ aterm (or aterm.cmd for Windows) script provides a command line Mediaflux termin
 
 ## II. Examples
 
-1. Enter command line terminal, simply 
-  * On Mac OS, Linux or Unix:
-    * `./aterm`
-  * On Windows:
-    * `aterm.cmd`
-  * Type `quit` to quit the terminal.
+  1. Enter command line terminal, simply 
+    * On Mac OS, Linux or Unix:
+      * `./aterm`
+    * On Windows:
+      * `aterm.cmd`
+    * Type `quit` to quit the terminal.
 1. Execute a Mediaflux service:
   * On Mac OS, Linux or Unix:
     * `./aterm server.uuid`
