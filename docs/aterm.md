@@ -1,6 +1,7 @@
 # aterm
 
-**aterm** (or **aterm.cmd** for Windows) script provides a command line Mediaflux terminal. It requires file: **aterm.jar**, which can be downloaded by this script automatically. It also requires the configruation file: **mflux.cfg**, which includes the Mediaflux server details and user credentials.
+**aterm** (or **aterm.cmd** for Windows) script provides a command line Mediaflux terminal. Via **aterm** you can execute any Mediaflux service or built-in commands. (e.g. **download**, **import**, **source**)
+It requires file: **aterm.jar**, which can be downloaded by this script automatically. It also requires the configruation file: **mflux.cfg**, which includes the Mediaflux server details and user credentials.
 
 ## 1. Configuration
 
