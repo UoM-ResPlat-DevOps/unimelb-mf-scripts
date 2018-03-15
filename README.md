@@ -4,11 +4,16 @@ A set of wrapper Unix bash scripts and Windows batch scripts for Mediaflux aterm
 ## 1. aterm
 **aterm** (or **aterm.cmd** for Windows) script provides a command line Mediaflux terminal. Via **aterm** you can execute any Mediaflux service or built-in commands. (e.g. **download**, **import**, **source**)
 
-  * [User Guide for aterm script](https://github.com/UoM-ResPlat-DevOps/unimelb-mf-scripts/blob/master/docs/aterm.md)
+  * [User guide for aterm](https://github.com/UoM-ResPlat-DevOps/unimelb-mf-scripts/blob/master/docs/aterm.md)
 
 ## 2. aterm-download
+**aterm-download** (or **aterm-download.cmd** on Windows) script provides a command line tool to download data from Mediaflux server. **aterm-download** is equivalent to **aterm download** using **aterm** script.
+
+  * [User guide for aterm-download](https://github.com/UoM-ResPlat-DevOps/unimelb-mf-scripts/blob/master/docs/aterm-download.md)
 
 ## 3. aterm-import
+**aterm-import** (or **aterm-import.cmd** on Windows) script is a command line tool to import(upload) local data files into Mediaflux server. 
 
+  * [User guide for aterm-import](https://github.com/UoM-ResPlat-DevOps/unimelb-mf-scripts/blob/master/docs/aterm-import.md)
 
 
