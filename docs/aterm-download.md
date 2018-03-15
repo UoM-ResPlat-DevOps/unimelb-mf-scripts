@@ -3,7 +3,7 @@
 **aterm-download** (or **aterm-download.cmd** on Windows) script provides a command line tool to download data from Mediaflux server. 
 It requires **aterm.jar**, which can be downloaded by the script automatically. Also it requires the configruation file: **mflux.cfg**, which includes the Mediaflux server details and user credentials.
 
-## I. Requirements
+## I. Configuration
 
 ### aterm.jar
 * The script downloads **aterm.jar** automatically to script directory.
