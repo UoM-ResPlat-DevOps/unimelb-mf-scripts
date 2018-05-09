@@ -45,7 +45,7 @@ MFLUX_CFG=$HOME/.Arcitecta/mflux.cfg
 [[ -z $MFLUX_CFG || ! -f $MFLUX_CFG ]] && MFLUX_CFG="$HOME/.Arcitecta/mflux.cfg"
 [[ -z $MFLUX_CFG || ! -f $MFLUX_CFG ]] && MFLUX_CFG="$(dirname $0)/mflux.cfg"
 [[ -z $MFLUX_CFG || ! -f $MFLUX_CFG ]] && MFLUX_CFG="./mflux.cfg"
-[[ -z $MFLUX_CFG || ! -f $MFLUX_CFG ]] && echo "Error: cannot mflux.cfg." 1>&2 && exit 1
+[[ -z $MFLUX_CFG || ! -f $MFLUX_CFG ]] && echo "Error: cannot find mflux.cfg." 1>&2 && exit 1
 
 # check aterm.jar
 [[ -z $MFLUX_ATERM || ! -f $MFLUX_ATERM ]] && MFLUX_ATERM="$(dirname $0)/aterm.jar"
