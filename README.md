@@ -20,7 +20,7 @@ A set of wrapper Unix bash scripts and Windows batch scripts for Mediaflux aterm
 
 ## II. CryoEM scripts
 
-### 1. [cryoem-download-aterm-script-url-create](https://github.com/UoM-ResPlat-DevOps/unimelb-mf-scripts/blob/master/unix/cryo-em/cryoem-download-aterm-script-url-create)
+### 1. [cryoem-download-aterm-script-url-create](https://github.com/UoM-ResPlat-DevOps/unimelb-mf-scripts/blob/master/docs/cryo-em/cryoem-download-aterm-script-url-create.md)
 
-### 2. [cryoem-download-shell-script-url-create](https://github.com/UoM-ResPlat-DevOps/unimelb-mf-scripts/blob/master/unix/cryo-em/cryoem-download-shell-script-url-create)
+### 2. [cryoem-download-shell-script-url-create](https://github.com/UoM-ResPlat-DevOps/unimelb-mf-scripts/blob/master/docs/cryo-em/cryoem-download-shell-script-url-create.md)
 
