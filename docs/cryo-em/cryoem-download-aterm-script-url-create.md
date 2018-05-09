@@ -1,6 +1,6 @@
 ### cryoem-download-aterm-script-url-create
 
-This is a shell script to execute unimelb.asset.download.aterm.script.create service on Mediaflux server to generate a sharable url to download shell scripts to download specify data collections in Mediaflux.
+This is a shell script to execute *unimelb.asset.download.aterm.script.create* service on Mediaflux server to generate a sharable url to download shell scripts to download specify data collections in Mediaflux.
 
 #### Usage
 ```
