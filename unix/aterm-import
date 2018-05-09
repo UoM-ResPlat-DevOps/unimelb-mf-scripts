@@ -1,56 +1,53 @@
 #!/bin/bash
 
-# aterm.jar location
-export MFLUX_ATERM=/opt/mediaflux/bin/aterm.jar
+# aterm.jar download link
+ATERM_URL=https://mediaflux.vicnode.org.au/mflux/aterm.jar
 
-# mflux.cfg location
-export MFLUX_CFG=$HOME/.Arcitecta/mflux.cfg
-
-# aterm.jar download link. In case of $MFLUX_ATERM does not exist. This script tries downloading aterm.jar from the link below to the same directory:
-ATERM_DOWNLOAD_LINK=https://mediaflux.vicnode.org.au/mflux/aterm.jar
-
-# check if java exists
-if [[ -z $(which java) ]]; then
-    echo "Error: cannot find java." 1>&2
-    exit 1
-fi
-
-
-SCRIPT_DIR=$(dirname $0)
-
-# check if aterm.jar exists
-if [[ -z $MFLUX_ATERM || ! -f $MFLUX_ATERM ]]; then
-    if [[ -f ${SCRIPT_DIR}/aterm.jar ]]; then
-        MFLUX_ATERM=${SCRIPT_DIR}/aterm.jar
-    else
-        if [[ ! -z $(which curl) ]]; then
-            curl -o ${SCRIPT_DIR}/aterm.jar ${ATERM_DOWNLOAD_LINK} || exit 21
-            MFLUX_ATERM=${SCRIPT_DIR}/aterm.jar
-        else
-            if [[ ! -z $(which wget) ]]; then
-                wget -O ${SCRIPT_DIR}/aterm.jar ${ATERM_DOWNLOAD_LINK} || exit 22
-                MFLUX_ATERM=${SCRIPT_DIR}/aterm.jar
-            else
-               echo "Error: cannot find aterm.jar." 1>&2
-               exit 2
-            fi
-        fi
+# download function
+download() {
+    if [[ -z $(which curl) && -z $(which wget) ]]; then
+        echo "Error: cannot download aterm.jar. No curl or wget found." 1>&2
+        return 1
     fi
-fi
-
-# check if mflux.cfg exists
-if [[ -z $MFLUX_CFG || ! -f $MFLUX_CFG ]]; then
-    if [[ -f $HOME/.Arcitecta/mflux.cfg ]]; then
-        MFLUX_CFG=$HOME/.Arcitecta/mflux.cfg
+    local out="$1"
+    local url="$2"
+    if [[ ! -z $(which curl) ]]; then
+        curl -f --create-dirs -k -o "${out}" "${url}"
     else
-        if [[ -f ${SCRIPT_DIR}/mflux.cfg ]]; then
-            MFLUX_CFG=${SCRIPT_DIR}/mflux.cfg
-        else
-            echo "Error: cannot find mflux.cfg." 1>&2
-            exit 3
-        fi
+        wget --no-check-certificate -O "${out}" "${url}"
     fi
-fi
+    return $?
+}
+
+# download aterm function
+download_aterm() {
+    [[ -z $MFLUX_ATERM || ! -f $MFLUX_ATERM ]] && MFLUX_ATERM=/opt/mediaflux/bin/aterm.jar
+    [[ -z $MFLUX_ATERM || ! -f $MFLUX_ATERM ]] && MFLUX_ATERM=./aterm.jar
+    [[ -z $MFLUX_ATERM || ! -f $MFLUX_ATERM ]] && MFLUX_ATERM=$(dirname $0)/aterm.jar
+    if [[ -z $MFLUX_ATERM || ! -f $MFLUX_ATERM ]]; then
+        download "${MFLUX_ATERM}" "${ATERM_URL}"
+        if [[ $? -ne 0 ]]; then
+            echo "Error: failed to download aterm.jar"
+            return 1
+        else
+            return 0
+        fi
+    else
+        return 0
+    fi    
+}
+
+# detect java
+[[ -z $(which java) ]] && echo "Error: cannot find java." 1>&2 && exit 1
+
+# detect aterm.jar
+download_aterm || exit 1
+
+# detect mflux.cfg
+MFLUX_CFG=$HOME/.Arcitecta/mflux.cfg
+[[ -z $MFLUX_CFG || ! -f $MFLUX_CFG ]] && MFLUX_CFG=$./mflux.cfg
+[[ -z $MFLUX_CFG || ! -f $MFLUX_CFG ]] && MFLUX_CFG=$(dirname $0)/mflux.cfg
+[[ -z $MFLUX_CFG || ! -f $MFLUX_CFG ]] && echo "Error: cannot find mflux.cfg." 1>&2 && exit 1
 
 # show usage if no arguments specified
 if [[ $# -eq 0 ]]; then
