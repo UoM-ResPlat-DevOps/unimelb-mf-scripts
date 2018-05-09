@@ -12,6 +12,8 @@ It requires **aterm.jar**, which can be downloaded by the script automatically. 
     * **export MFLUX_ATERM=/path/to/aterm.jar**
   * on Windows, modify aterm.cmd file:
     * **SET MFLUX_ATERM=x:\path\to\aterm.jar**
+  * On Unix systems you must make the script executable (with **chmod u+rwx <script>**) to execute it directly (else use the **source** command to execute it)
+    
 
 ### mflux.cfg
 * You **must** specify the Mediaflux server details and user credentails (or secure identity token) in the **mflux.cfg** file.
