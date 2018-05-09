@@ -108,7 +108,11 @@ case $key in
 esac
 done
 
-[[ ${#NAMESPACES[@]} -eq 0 ]] && echo "Error: no namespace(Mediaflux directory) paths are specified." && exit 1
+if [[ ${#NAMESPACES[@]} -eq 0 ]]; then
+    echo "Error: no namespace(Mediaflux directory) paths are specified." 1>&2
+    usage
+    exit 1
+fi
 
 for ns in "${NAMESPACES[@]}"
 do
@@ -125,7 +129,9 @@ do
         ROLE="${PROJECT}:participant-a"
     else
         if [[ ${prj} != ${PROJECT} ]]; then
-            echo "Error: you cannot specify namespaces from multiple projects." && exit 1
+            echo "Error: you cannot specify namespaces from multiple projects." 1>&2
+            usage
+            exit 1
         fi
     fi
     COMMAND="${COMMAND} :namespace ${ns}"
