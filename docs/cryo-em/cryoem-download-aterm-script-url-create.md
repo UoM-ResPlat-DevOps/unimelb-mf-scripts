@@ -8,6 +8,10 @@ This is a shell script to execute **unimelb.asset.download.aterm.script.create**
 ```
 wget https://raw.githubusercontent.com/UoM-ResPlat-DevOps/unimelb-mf-scripts/master/unix/cryo-em/cryoem-download-aterm-script-url-create
 ```
+or if wget is not available:
+```
+curl -o cryoem-download-aterm-script-url-create https://raw.githubusercontent.com/UoM-ResPlat-DevOps/unimelb-mf-scripts/master/unix/cryo-em/cryoem-download-aterm-script-url-create
+```
 2. Set the script to be executable
 ```
 chmod +x cryoem-download-aterm-script-url-create
