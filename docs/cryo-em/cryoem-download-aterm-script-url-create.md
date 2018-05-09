@@ -2,7 +2,18 @@
 
 This is a shell script to execute **unimelb.asset.download.aterm.script.create** service on Mediaflux server to generate a sharable url to download shell scripts to download specify data collections in Mediaflux.
 
-#### Usage
+#### I. Install
+
+1. Run the following command in Linux terminal to download the script
+```
+wget https://raw.githubusercontent.com/UoM-ResPlat-DevOps/unimelb-mf-scripts/master/unix/cryo-em/cryoem-download-aterm-script-url-create
+```
+2. Set the script to be executable
+```
+chmod +x cryoem-download-aterm-script-url-create
+```
+
+#### II. Usage
 ```
 Usage:
     cryoem-download-aterm-script-url-create [-h|--help] [--expire-days <number-of-days>] [--ncsr <ncsr>] [--skip] [--quiet] <namespace>
