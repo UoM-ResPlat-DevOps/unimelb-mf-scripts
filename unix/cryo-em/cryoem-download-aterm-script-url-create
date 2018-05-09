@@ -15,7 +15,8 @@ MFLUX_ATERM_URL=https://mediaflux.vicnode.org.au/mflux/aterm.jar
 # function to print usage
 usage() {
     echo ""
-	echo "Usage: $(basename $0) [-h|--help] [--expire-days <number-of-days>] [--ncsr <ncsr>] [--skip] [--quiet] <namespace>"
+	echo "Usage:"
+	echo "    $(basename $0) [-h|--help] [--expire-days <number-of-days>] [--ncsr <ncsr>] [--skip] [--quiet] <namespace>"
 	echo ""
 	echo "Options:"
 	echo "    -h | --help                       prints usage."
@@ -26,7 +27,7 @@ usage() {
 	echo "    --quiet                           do not print output message."
 	echo ""
 	echo "Positional arguments:"
-	echo "    <namespace>                       path of the namespace to be downloaded by the scripts. Can be multiple, but must be from the same project."
+	echo "    <namespace>                       Mediaflux asset namespace to be downloaded by the scripts. Can be multiple, but must be from the same project."
 	echo ""
 	echo "Examples:"
 	echo "    $(basename $0) --email user1@unimelb.edu.au --expire-days 10 --ncsr 2 proj-abc-1128.4.999/RAW_DATA proj-abc-1128.4.999/PROCESSED_DATA"
@@ -115,7 +116,7 @@ esac
 done
 
 if [[ ${#NAMESPACES[@]} -eq 0 ]]; then
-    echo "Error: no namespace(Mediaflux directory) paths are specified." 1>&2
+    echo "Error: no Mediaflux asset namespace(directory) is specified." 1>&2
     usage
     exit 1
 fi
