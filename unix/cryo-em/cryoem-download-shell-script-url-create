@@ -2,9 +2,8 @@
 
 # Default values for the script arguments
 EXPIRE_DAYS=14
-OVERWRITE=true
+OVERWRITE=false
 VERBOSE=true
-NCSR=4
 
 # root namespace for cryo-em projects
 NAMESPACE_ROOT=/projects/cryo-em
@@ -16,13 +15,13 @@ MFLUX_ATERM_URL=https://mediaflux.vicnode.org.au/mflux/aterm.jar
 usage() {
     echo ""
 	echo "Usage:"
-	echo "    $(basename $0) [-h|--help] [--expire-days <number-of-days>] [--ncsr <ncsr>] [--skip] [--quiet] <namespace>"
+	echo "    $(basename $0) [-h|--help] [--expire-days <number-of-days>] [--ncsr <ncsr>] [--overwrite] [--quiet] <namespace>"
 	echo ""
 	echo "Options:"
 	echo "    -h | --help                       prints usage."
 	echo "    --email <addresses>               specify the email recipient of the generated url. Can be comma-separated if there are more than one."
 	echo "    --expire-days <number-of-days>    expiry of the auth token. Defaults to ${EXPIRE_DAYS} days."
-	echo "    --skip                            skip if output file exists."
+	echo "    --overwrite                       overwrite if output file exists."
 	echo "    --quiet                           do not print output message."
 	echo ""
 	echo "Positional arguments:"
@@ -33,26 +32,23 @@ usage() {
 	echo ""
 }
 
-
-
-MFLUX_ATERM=/opt/mediaflux/bin/aterm.jar
-MFLUX_CFG=$HOME/.Arcitecta/mflux.cfg
-
 # check java
 [[ -z $(which java) ]] && echo "Error: cannot find java." 1>&2 && exit 1
 
 # check mflux.cfg
-[[ -z $MFLUX_CFG || ! -f $MFLUX_CFG ]] && MFLUX_CFG="$HOME/.Arcitecta/mflux.cfg"
-[[ -z $MFLUX_CFG || ! -f $MFLUX_CFG ]] && MFLUX_CFG="$(dirname $0)/mflux.cfg"
 [[ -z $MFLUX_CFG || ! -f $MFLUX_CFG ]] && MFLUX_CFG="./mflux.cfg"
+[[ -z $MFLUX_CFG || ! -f $MFLUX_CFG ]] && MFLUX_CFG="$(dirname $0)/mflux.cfg"
+[[ -z $MFLUX_CFG || ! -f $MFLUX_CFG ]] && MFLUX_CFG="$HOME/.Arcitecta/mflux.cfg"
 [[ -z $MFLUX_CFG || ! -f $MFLUX_CFG ]] && echo "Error: cannot find mflux.cfg." 1>&2 && exit 1
 
 # check aterm.jar
+[[ -z $MFLUX_ATERM || ! -f $MFLUX_ATERM ]] && MFLUX_ATERM=/opt/mediaflux/bin/aterm.jar
 [[ -z $MFLUX_ATERM || ! -f $MFLUX_ATERM ]] && MFLUX_ATERM="$(dirname $0)/aterm.jar"
-[[ -z $MFLUX_ATERM || ! -f $MFLUX_ATERM ]] && MFLUX_ATERM="./aterm.jar"
+[[ -z $MFLUX_ATERM || ! -f $MFLUX_ATERM ]] && MFLUX_ATERM=./aterm.jar
 
 # download aterm.jar
 if [[ -z $MFLUX_ATERM || ! -f $MFLUX_ATERM ]]; then
+    MFLUX_ATERM=./aterm.jar
     CURL=$(which curl)
     WGET=$(which wget)
     [[ -z "${CURL}" && -z "${WGET}" ]] && echo "Error: cannot download aterm.jar. Found no curl or wget." 1>&2 && exit 1
@@ -90,8 +86,8 @@ case $key in
     shift
     shift
     ;;
-    --skip)
-    OVERWRITE=false
+    --overwrite)
+    OVERWRITE=true
     shift
     ;;
     --quiet)
@@ -140,7 +136,7 @@ do
     COMMAND="${COMMAND} :namespace ${ns}"
 done
 
-COMMAND="${COMMAND} :token < :role -type role ${ROLE} :to now+${EXPIRE_DAYS}day > :ncsr ${NCSR} :verbose ${VERBOSE} :overwrite ${OVERWRITE}"
+COMMAND="${COMMAND} :token < :role -type role ${ROLE} :to now+${EXPIRE_DAYS}day > :verbose ${VERBOSE} :overwrite ${OVERWRITE}"
 
 if [[ ${#EMAILS[@]} -gt 0 ]]; then
     COMMAND="${COMMAND} :email < "
