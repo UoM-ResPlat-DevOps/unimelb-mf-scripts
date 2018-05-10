@@ -124,12 +124,14 @@ fi
 for ns in "${NAMESPACES[@]}"
 do
     if [[ "${ns}" =~ ^${NAMESPACE_ROOT}/.* ]]; then
-        prj=${ns#$NAMESPACE_ROOT/}
-        prj=${prj%/*}
+        path=${ns#$NAMESPACE_ROOT/} # remove leading root namespace
+        IFS='/' read -r -a array <<< "${path}"
+        prj="${array[0]}"
     else
-        ns=${ns#*/}    # remove leading slash
-        prj=${ns%/*}    # get project id by removing suffix after first slash
-        ns="${NAMESPACE_ROOT}/${ns}" # get full path of the namespace
+        path=${ns#*/}   # remove leading slash
+        IFS='/' read -r -a array <<< "${path}"
+        prj="${array[0]}"
+        ns="${NAMESPACE_ROOT}/${path}" # get full path of the namespace
     fi
     if [[ -z ${PROJECT} ]]; then
         PROJECT=${prj}
