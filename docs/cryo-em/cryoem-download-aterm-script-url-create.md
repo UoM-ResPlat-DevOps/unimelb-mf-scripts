@@ -20,14 +20,14 @@ chmod +x cryoem-download-aterm-script-url-create
 #### II. Usage
 ```
 Usage:
-    cryoem-download-aterm-script-url-create [-h|--help] [--expire-days <number-of-days>] [--ncsr <ncsr>] [--skip] [--quiet] <namespace>
+    cryoem-download-aterm-script-url-create [-h|--help] [--expire-days <number-of-days>] [--ncsr <ncsr>] [--overwrite] [--quiet] <namespace>
 
 Options:
     -h | --help                       prints usage.
     --email <addresses>               specify the email recipient of the generated url. Can be comma-separated if there are more than one.
     --expire-days <number-of-days>    expiry of the auth token. Defaults to 14 days.
     --ncsr <ncsr>                     number of concurrent server requests. Defaults to 4.
-    --skip                            skip if output file exists.
+    --overwrite                       overwrite if output file exists.
     --quiet                           do not print output message.
 
 Positional arguments:
