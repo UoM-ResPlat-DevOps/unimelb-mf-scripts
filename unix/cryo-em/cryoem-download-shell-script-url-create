@@ -136,7 +136,7 @@ do
     COMMAND="${COMMAND} :namespace ${ns}"
 done
 
-COMMAND="${COMMAND} :token < :role -type role ${ROLE} :to now+${EXPIRE_DAYS}day > :verbose ${VERBOSE} :overwrite ${OVERWRITE}"
+COMMAND="${COMMAND} :token < :role -type role VicNode:standard-user :role -type role ${ROLE} :to now+${EXPIRE_DAYS}day > :verbose ${VERBOSE} :overwrite ${OVERWRITE}"
 
 if [[ ${#EMAILS[@]} -gt 0 ]]; then
     COMMAND="${COMMAND} :email < "
