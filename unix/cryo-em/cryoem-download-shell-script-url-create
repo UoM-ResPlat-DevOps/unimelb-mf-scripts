@@ -111,6 +111,7 @@ if [[ ${#NAMESPACES[@]} -eq 0 ]]; then
     exit 1
 fi
 
+COMMAND="${COMMAND} :download <"
 for ns in "${NAMESPACES[@]}"
 do
     if [[ "${ns}" =~ ^${NAMESPACE_ROOT}/.* ]]; then
@@ -126,6 +127,7 @@ do
     if [[ -z ${PROJECT} ]]; then
         PROJECT=${prj}
         ROLE="${PROJECT}:participant-a"
+        ROLE_NAMESPACE="${PROJECT}:"
     else
         if [[ ${prj} != ${PROJECT} ]]; then
             echo "Error: you cannot specify namespaces from multiple projects." 1>&2
@@ -135,8 +137,10 @@ do
     fi
     COMMAND="${COMMAND} :namespace ${ns}"
 done
-
 COMMAND="${COMMAND} :token < :role -type role ${ROLE} :to now+${EXPIRE_DAYS}day > :verbose ${VERBOSE} :overwrite ${OVERWRITE}"
+COMMAND="${COMMAND} >"
+
+COMMAND="${COMMAND} :token < :perm < :resource -type role:namespace ${ROLE_NAMESPACE} :access ADMINISTER > >"
 
 if [[ ${#EMAILS[@]} -gt 0 ]]; then
     COMMAND="${COMMAND} :email < "
