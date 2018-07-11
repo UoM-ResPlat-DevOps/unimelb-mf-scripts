@@ -1,4 +1,4 @@
-# NOTE: this repository has been archived. It is now read-only. All the contents have been moved to [unimelb-mf-clients](https://github.com/UoM-ResPlat-DevOps/unimelb-mf-clients) repostiory. Please use [unimelb-mf-clients](https://github.com/UoM-ResPlat-DevOps/unimelb-mf-clients) instead.
+# NOTE: this repository has been archived(It's now read-only). All the contents have been moved to [unimelb-mf-clients](https://github.com/UoM-ResPlat-DevOps/unimelb-mf-clients) repostiory. Please use [unimelb-mf-clients](https://github.com/UoM-ResPlat-DevOps/unimelb-mf-clients) instead.
 
 
 # unimelb-mf-scripts
